@@ -1,4 +1,4 @@
-## Sorting Algorithms Benchmarking
+# Sorting Algorithms Benchmarking
 
 
 ## Summary
