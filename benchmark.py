@@ -416,7 +416,7 @@ if __name__ == "__main__":
     
     print("\n--- Benchmarking Methodology ---")
     print(f"Each experiment was repeated {NUM_REPETITIONS} times, and the average execution time is reported.")
-    print("Timing mechanism: Python's `time.perf_counter()` for high-resolution timing.")
+    print("Timing mechanism: C's `clock()` function from <time.h> is used to measure algorithm execution time.")
     print("Comparison counting: Instrumented C code tracks all element comparisons.")
     print("Input selection: Pre-generated test data from the 'test_data/' directory was used.")
     print("Same inputs were used for all sorting algorithms to ensure a fair comparison.")
@@ -480,9 +480,10 @@ if __name__ == "__main__":
     print("="*80)
     
     print("\n⚠️  TIMING MEASUREMENT:")
-    print("  - Timing is measured INSIDE C code using clock_gettime(CLOCK_MONOTONIC)")
-    print("  - This eliminates Python subprocess overhead from the measurements")
-    print("  - Results are now accurate for actual algorithm performance")
+    print("  - Timing is measured INSIDE C code using clock() from <time.h>")
+    print("  - The clock() function measures CPU time used by the program")
+    print("  - Python is only used to run the executable and collect results")
+    print("  - This avoids Python subprocess overhead affecting algorithm timing")
     
     print("\n⚠️  RADIX SORT 'COMPARISONS' NOTE:")
     print("  - Radix sort is a NON-COMPARATIVE sorting algorithm")

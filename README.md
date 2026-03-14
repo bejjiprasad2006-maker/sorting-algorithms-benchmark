@@ -6,7 +6,7 @@
 
 ## Summary
 
-This application benchmarks five different sorting algorithms to evaluate their performance across various input sizes and data distributions. The results are output in CSV format and visualized through plots, accompanied by a detailed report.
+This application benchmarks seven different sorting algorithms and three QuickSort pivot variants to evaluate their performance across various input sizes and data distributions.
 
 ## Table of Contents
 
@@ -32,23 +32,49 @@ This application benchmarks five different sorting algorithms to evaluate their 
 
 ## 1. Project Structure
 
-This repository is organized as follows:
+Sorting-algorithms-benchmark/
 
-*   `scripts/`: Contains the main `benchmark.py` program and the C implementations of the sorting algorithms.
-*   `test_data/`: Stores pre-generated input data files used for benchmarking.
-*   `executables/`: (Generated during runtime) Stores compiled C executables of the sorting algorithms.
-*   `graphs/`: (Generated during runtime) Contains CSV files with benchmarking results and plots produced by the Python scripts.
-*   `REPORT.md`: The final report detailing the experimental setup and analysis.
+scripts/  
+• benchmark.py – Main benchmarking script  
+
+sorting_algorithms/  
+• C implementations of all sorting algorithms  
+
+test_data/  
+• Generated datasets for benchmarking  
+
+executables/  
+• Compiled C programs (generated automatically)  
+
+graphs/  
+• Generated plots and CSV results  
+
+graphs/7_sorting_algo_comparisons/  
+• Graphs comparing seven sorting algorithms  
+
+graphs/quick_sort_analysis/  
+• Graphs comparing QuickSort pivot strategies  
+
+graphs/csv_data/  
+• CSV tables containing benchmark results
 
 ## 2. Algorithms Benchmarked
 
-The benchmarking process includes the following five sorting algorithms, chosen to represent different categories:
+The benchmarking process includes the following sorting algorithms:
 
-1.  **Simple Comparison-Based Sort:** Bubble Sort
-2.  **Efficient Comparison-Based Sort:** Quicksort (using the last element as pivot)
-3.  **Non-Comparison Sort:** Radix Sort
-4.  **Other Sorting Algorithm 1:** Selection Sort
-5.  **Other Sorting Algorithm 2:** Insertion Sort
+1. **Bubble Sort** – Simple comparison-based sorting algorithm.
+2. **Selection Sort** – Selects the minimum element repeatedly.
+3. **Insertion Sort** – Efficient for small or nearly sorted datasets.
+4. **Merge Sort** – Divide-and-conquer sorting algorithm with O(n log n) complexity.
+5. **Heap Sort** – Comparison-based algorithm using a binary heap.
+6. **Quick Sort (Median-of-Three Pivot)** – Optimized QuickSort variant.
+7. **Radix Sort** – Non-comparative integer sorting algorithm.
+
+Additionally, three QuickSort pivot strategies are analyzed separately:
+
+- Quick Sort (First Element Pivot)
+- Quick Sort (Random Pivot)
+- Quick Sort (Median-of-Three Pivot)
 
 ## 3. Benchmarking Methodology
 
@@ -62,9 +88,12 @@ The experimental setup is designed to provide stable and comparable performance 
 *   **Graphics Card:** NVIDIA RTX 4050 Studio
 *   **Serial Number:** R6N0CX02K537230
 
+
 ### 3.2. Timing Mechanism
 
-The execution time for each sorting algorithm is measured using **Python's `time.perf_counter()`**. This function provides a high-resolution performance counter, suitable for benchmarking short durations. The C sorting programs are executed as subprocesses, and their total execution time (including input reading, sorting, and any internal overhead) is captured by the Python script.
+The execution time for each sorting algorithm is measured **inside the C programs using the `clock()` function from `<time.h>`**.
+
+This approach ensures that the timing reflects only the execution time of the sorting algorithm itself, avoiding overhead from Python subprocess execution. The Python script is responsible only for compiling the C programs, running the experiments, collecting results, and generating graphs.
 
 ### 3.3. Number of Experiment Repetitions
 
@@ -220,10 +249,23 @@ Data structure: Array
     *   Generate performance plots in the `graphs/` directory.
     *   Generate a detailed results table (CSV) in the `graphs/` directory.
 
+
+### Benchmark Outputs
+
+After running the benchmark, the following outputs are generated:
+
+• Execution time graphs for all sorting algorithms  
+• Comparison count graphs  
+• QuickSort pivot comparison graphs  
+• Correlation analysis between comparisons and execution time  
+• CSV tables containing all benchmark results  
+
+These outputs are stored inside the `graphs/` directory.
+
 ## 6. License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 7. Contact Information
 
-For any inquiries, please contact: dheeraj.nagaraja@gmail.com
+For any inquiries, please contact: kowndinyamarepalli2007@gmail.com
